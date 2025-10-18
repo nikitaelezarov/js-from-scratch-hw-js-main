@@ -17,9 +17,8 @@ let isAccess
 
 if((isAdmin || isVerifiedUser) &&
     (hasSpecialPermission || hasTemporaryPass )) {
-    isAccess = true
+    isAccess = true// доступ для пользователя предоставлен
 }else{
-    isAccess = false
+    isAccess = false//Доступ для пользователя не предоставлен
 }
-
 console.log(isAccess)
