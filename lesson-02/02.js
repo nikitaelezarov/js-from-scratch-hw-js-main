@@ -16,11 +16,11 @@ const maxAttempts = 10; // ограничиваем количество поп�
 
 while (!isWinningDouble && attempts < maxAttempts) {
     attempts++;
-    dice1 = Math.floor(Math.random() * 6) + 1;
+    dice1 = Math.floor(Math.random() * 6) + 1;// Присваиваем случайное число от 0 до 6, ставим флоор 1 чтобы от 1 до 6
     console.log('Первый бросок: ' + dice1)
     dice2 = Math.floor(Math.random() * 6) + 1;
     console.log('Второй бросок: ' + dice2)
-    isWinningDouble = (dice1 === dice2) && (dice1 > 3);
+    isWinningDouble = (dice1 === dice2) && (dice1 > 3); // выйгрышный  дубль если одинаковое число и больше 3
     if (isWinningDouble) {
         console.log('Выигрышный дубль!')
     }else {
