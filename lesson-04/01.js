@@ -13,4 +13,44 @@
 includesElement([1, 2, 3], 2)  // должен вернуть `true`.
 */
 
-function includesElement() {}
+function includesElement(array, element) {
+    let newElement = []
+    // Проходим по всем элементам массива с помощью цикла for
+    for (let i = 0; i < array.length; i++) {
+        // Сравниваем текущий элемент массива с искомым элементом
+        if (array[i] === element) {
+            // Если нашли совпадение, сразу возвращаем true
+            newElement.push(array[i]);
+            return true
+        }
+    }
+    return false
+}
+
+console.log(includesElement([1, 2, 3], 2)); // true
+console.log(includesElement([1, 2, 3], 4)); // false
+
+// Строки
+console.log(includesElement(['a', 'b', 'c'], 'b')); // true
+console.log(includesElement(['a', 'b', 'c'], 'd')); // false
+
+// Разные типы данных
+console.log(includesElement([1, '2', true, null], '2')); // true
+console.log(includesElement([1, '2', true, null], 2)); // false (разные типы)
+
+// Пустой массив
+console.log(includesElement([], 1)); // false
+
+// let superArray = [1, 2, 3, 4, 5, 6, 7, 8,]
+// function removeElement(array, element) {
+//     const newArray = []
+//     for (let i = 0; i < array.length; i++) {
+//         if (array[i] !== element) {
+//             newArray.push(array[i])
+//         }
+//     }
+//     return newArray
+// }
+//
+// console.log(removeElement([1, 2, 3, 4, 5, 6, 7, 8], 5))
+// console.log(removeElement(superArray,4))
