@@ -15,39 +15,47 @@
 Подсказка: можно использовать функцию `includesElement`, которую мы написали ранее. Переписывать её не нужно, она доступна по всему проекту за счёт hoisting.
 */
 
+// function findUniqueElements(array) {
+//     let newArray = [];
+//     for (i = 0; i < array.length; i++) {
+//         // Проверяем, есть ли текущий элемент уже в новом массиве
+//         let isUnique = true;
+//         for (let j = 0; j < newArray.length; j++) {
+//             if (array[i] === newArray[j]) {
+//                 isUnique = false;
+//                 break; // выходим из внутреннего цикла, если нашли дубликат
+//             }
+//         }
+//         // Если элемент уникальный, добавляем его в новый массив
+//         if (isUnique) {
+//             newArray.push(array[i])
+//         }
+//     }
+//     return newArray
+// }
+
 function findUniqueElements(array) {
-    let newArray = [];
-    for (i = 0; i < array.length; i++) {
-        // Проверяем, есть ли текущий элемент уже в новом массиве
-        let isUnique = true;
-        for (let j = 0; j < newArray.length; j++) {
-            if (array[i] === newArray[j]) {
-                isUnique = false;
-                break; // выходим из внутреннего цикла, если нашли дубликат
-            }
-        }
-        // Если элемент уникальный, добавляем его в новый массив
-        if (isUnique) {
-            newArray.push(array[i])
+    let uniqueArray = [];
+
+    for (let i = 0; i < array.length; i++) {
+        // Используем функцию includesElement для проверки наличия элемента
+        if (!includesElement(uniqueArray, array[i])) {
+            uniqueArray.push(array[i]);
         }
     }
-    return newArray
+    return uniqueArray;
+}
+function includesElement(array, element) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] === element) {
+            return true;
+        }
+    }
+    return false;
 }
 
 console.log(findUniqueElements([1, 2, 3, 2, 1, 4]))//[1, 2, 3, 4]
-// function findUniqueElements(array) {
-//     let uniqueArray = [];
-//
-//     for (let i = 0; i < array.length; i++) {
-//         // Используем функцию includesElement для проверки наличия элемента
-//         if (!includesElement(uniqueArray, array[i])) {
-//             uniqueArray.push(array[i]);
-//         }
-//     }
-//
-//     return uniqueArray;
-// }
-
+console.log(findUniqueElements(['a', 'b', 'a', 'c'])); // ['a', 'b', 'c']
 
 // С помощью Set (более современный способ):
 // function findUniqueElements(array) {
