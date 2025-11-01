@@ -41,16 +41,3 @@ console.log(includesElement([1, '2', true, null], 2)); // false (разные т
 // Пустой массив
 console.log(includesElement([], 1)); // false
 
-// let superArray = [1, 2, 3, 4, 5, 6, 7, 8,]
-// function removeElement(array, element) {
-//     const newArray = []
-//     for (let i = 0; i < array.length; i++) {
-//         if (array[i] !== element) {
-//             newArray.push(array[i])
-//         }
-//     }
-//     return newArray
-// }
-//
-// console.log(removeElement([1, 2, 3, 4, 5, 6, 7, 8], 5))
-// console.log(removeElement(superArray,4))
