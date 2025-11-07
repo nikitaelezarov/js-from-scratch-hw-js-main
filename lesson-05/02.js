@@ -34,5 +34,28 @@ const gallery = {
   'Starry Night': 'Vincent van Gogh',
   'The Scream': 'Edvard Munch',
 }
+console.log("До обновления:", gallery)
 
-function updateGallery() {}
+function updateGallery(gallery,artworkName,newValue) {
+    //обновляем произведение если уже есть// Просто обновляем значение - если ключа нет, он будет создан
+    if(artworkName in gallery){
+        console.log(`Обновляем существующее произведение: "${artworkName}"`);
+        gallery[artworkName] = newValue;
+    }else{
+        console.log(`Добавляем новое произведение: "${artworkName}"`);
+        gallery[artworkName] = newValue;
+    }
+}
+updateGallery(gallery, 'Mona Lisa', 'Leonardo da Vinci, 1503-1506')
+updateGallery(gallery, 'The Persistence of Memory', 'Salvador Dali')
+
+console.log("После обновления:",gallery)
+
+
+// function updateGallery(gallery, artworkName, newValue) {
+//     // Обновляем значение произведения искусства
+//     gallery[artworkName] = newValue;
+// }
+// updateGallery(gallery, 'Mona Lisa', 'Leonardo da Vinci, 1503-1506')
+// updateGallery(gallery, 'The Persistence of Memory', 'Salvador Dali')
+// console.log("После обновления:",gallery)
