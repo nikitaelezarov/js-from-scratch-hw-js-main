@@ -20,9 +20,11 @@ const game = {
         if (!(resource in this.resources)) {
             console.log("Invalid resource")
             return;
+        }else{
+            // Добавляем указанное количество к ресурсу
+            this.resources[resource] += amount;
+            console.log(`добавлено ${amount} ${resource}. новое amount: ${this.resources[resource]}`);
         }
-        // Добавляем указанное количество к ресурсу
-        this.resources[resource] += amount;
     }
 }
 // Добавляем новые свойства в объект resources
