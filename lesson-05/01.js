@@ -19,18 +19,21 @@ const game = {
         // Проверяем, существует ли такой ресурс
         if (!(resource in this.resources)) {
             console.log("Invalid resource")
+            return;
         }
         // Добавляем указанное количество к ресурсу
         this.resources[resource] += amount;
     }
 }
-game.resources.stone = 75//добавляю в объект гейм в объекте ресурсы ключ пары
+// Добавляем новые свойства в объект resources
+game.resources.stone = 75
 game.resources.food = 25
 console.log(game.resources);
+// Используем метод addResource
 game.addResource("gold", 50)
 game.addResource("lumber", 25)
 console.log(game.resources);
-// game.addResource("mana", 100)
+// Используем отрицательное значение
 game.addResource("food", -5)
 console.log(game.resources.food);
 console.log(game.resources);
