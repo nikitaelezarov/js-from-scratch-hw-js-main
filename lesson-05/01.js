@@ -30,7 +30,7 @@ console.log(game.resources);
 game.addResource("gold", 50)
 game.addResource("lumber", 25)
 console.log(game.resources);
-game.addResource("mana", 100)
+// game.addResource("mana", 100)
 game.addResource("food", -5)
 console.log(game.resources.food);
 console.log(game.resources);
