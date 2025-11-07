@@ -11,9 +11,27 @@
 */
 
 const game = {
-  resources: {
-    gold: 250,
-    lumber: 100,
-  },
-  addResource() {}
+    resources: {
+        gold: 250,
+        lumber: 100,
+    },
+    addResource(resource, amount) {
+        // Проверяем, существует ли такой ресурс
+        if (!(resource in this.resources)) {
+            console.log("Invalid resource")
+        }
+        // Добавляем указанное количество к ресурсу
+        this.resources[resource] += amount;
+    }
 }
+game.resources.stone = 75//добавляю в объект гейм в объекте ресурсы ключ пары
+game.resources.food = 25
+console.log(game.resources);
+game.addResource("gold", 50)
+game.addResource("lumber", 25)
+console.log(game.resources);
+game.addResource("mana", 100)
+game.addResource("food", -5)
+console.log(game.resources.food);
+console.log(game.resources);
+
