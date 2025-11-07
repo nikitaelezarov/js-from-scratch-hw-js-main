@@ -27,16 +27,16 @@ const game = {
         }
     }
 }
-// Добавляем новые свойства в объект resources
-game.resources.stone = 75
-game.resources.food = 25
-console.log(game.resources);
-// Используем метод addResource
-game.addResource("gold", 50)
-game.addResource("lumber", 25)
-console.log(game.resources);
-// Используем отрицательное значение
-game.addResource("food", -5)
-console.log(game.resources.food);
+// // Добавляем новые свойства в объект resources
+// game.resources.stone = 75
+// game.resources.food = 25
+// console.log(game.resources);
+// // Используем метод addResource
+// game.addResource("gold", 50)
+// game.addResource("lumber", 25)
+// console.log(game.resources);
+// // Используем отрицательное значение
+// game.addResource("food", -5)
+// console.log(game.resources.food);
 console.log(game.resources);
 
