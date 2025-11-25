@@ -42,3 +42,5 @@ const doubledNumbers = map(numbers, (element, index) => {
 // console.log(result); // [2, 4, 6, 8, 10]
 
 console.log(doubledNumbers); // [2, 4, 6, 8, 10]
+
+
