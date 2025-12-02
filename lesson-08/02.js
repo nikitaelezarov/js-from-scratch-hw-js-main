@@ -5,13 +5,13 @@
 
 function isNumeric(str) {
     // Проверяем, что входное значение - строка
-    if(typeof str !== 'string'){
+    if (typeof str !== 'string') {
         return false;
-  }
+    }
     // Убираем пробелы с начала и конца
     const trimmedStr = str.trim();
     // Проверяем, что строка не пустая
-    if(trimmedStr === ''){
+    if (trimmedStr === '') {
         return false;
     }
     // Пробуем преобразовать строку в число
@@ -23,7 +23,8 @@ function isNumeric(str) {
     //    (это исключает случаи вроде "123abc" → 123)
     return !isNaN(num) &&
         isFinite(num) &&
-        String(num) === trimmedStr;
+        (String(num) === trimmedStr ||
+        String(num).replace(/e\+?/, 'e') === trimmed.toLowerCase().replace(/e\+?/, 'e'));
 }
 
 console.log(isNumeric("123")) // Ожидаемый результат: true
