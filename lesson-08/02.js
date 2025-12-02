@@ -21,10 +21,34 @@ function isNumeric(str) {
     // 2. Это конечное число (isFinite исключает Infinity и -Infinity)
     // 3. Преобразованное число, преобразованное обратно в строку, совпадает с исходной строкой
     //    (это исключает случаи вроде "123abc" → 123)
-    return !isNaN(num) &&
-        isFinite(num) &&
-        (String(num) === trimmedStr ||
-        String(num).replace(/e\+?/, 'e') === trimmed.toLowerCase().replace(/e\+?/, 'e'));
+    // 4. Для чисел в научной нотации делаем более гибкую проверку
+    if (!isNaN(num) && isFinite(num)) {
+        // Основная строгая проверка
+        if (String(num) === trimmedStr) {
+            return true;
+        }
+
+        // Для научной нотации: сравниваем числовые значения
+        // Например: '1.23e4' → 12300 → '12300'
+        // Но также '1.23e4' может преобразоваться в '1.23e4'
+        const numStr = String(num);
+
+        // Проверяем, совпадают ли числовые значения
+        if (Number(numStr) === Number(trimmedStr)) {
+            return true;
+        }
+
+        // Проверяем научную нотацию без плюса
+        // '1.23e+4' → '1.23e4'
+        const normalizedOriginal = trimmedStr.toLowerCase().replace('e+', 'e');
+        const normalizedNum = numStr.toLowerCase().replace('e+', 'e');
+
+        if (normalizedOriginal === normalizedNum) {
+            return true;
+        }
+    }
+    return false;
+
 }
 
 console.log(isNumeric("123")) // Ожидаемый результат: true
@@ -32,3 +56,4 @@ console.log(isNumeric("12.3")) // Ожидаемый результат: true
 console.log(isNumeric("123abc")) // Ожидаемый результат: false
 console.log(isNumeric("abc")) // Ожидаемый результат: false
 console.log(isNumeric(" ")) // Ожидаемый результат: false
+console.log(isNumeric("1.23e4"))//ожидаемый результат true
