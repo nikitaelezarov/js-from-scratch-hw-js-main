@@ -15,18 +15,18 @@
 */
 
 const PETS = [
-  { id: 'cat', title: '🐱' },
-  { id: 'dog', title: '🐶' },
-  { id: 'parrot', title: '🦜' },
-  { id: 'fish', title: '🐠' },
-  { id: 'spider', title: '🕷' },
-  { id: 'snake', title: '🐍' },
-  { id: 'hamster', title: '🐹' },
-  { id: 'turtle', title: '🐢' },
-  { id: 'chinchilla', title: '🦇' },
-  { id: 'hedgehog', title: '🦔' },
-  { id: 'rat', title: '🐀' },
-  { id: 'frog', title: '🐸' },
+    {id: 'cat', title: '🐱'},
+    {id: 'dog', title: '🐶'},
+    {id: 'parrot', title: '🦜'},
+    {id: 'fish', title: '🐠'},
+    {id: 'spider', title: '🕷'},
+    {id: 'snake', title: '🐍'},
+    {id: 'hamster', title: '🐹'},
+    {id: 'turtle', title: '🐢'},
+    {id: 'chinchilla', title: '🦇'},
+    {id: 'hedgehog', title: '🦔'},
+    {id: 'rat', title: '🐀'},
+    {id: 'frog', title: '🐸'},
 ]
 
 const cart = []
@@ -38,33 +38,68 @@ const clearCartButton = document.getElementById('clear-cart-button')
 
 // Рендерим кнопки для питомцев
 for (let i = 0; i < PETS.length; i++) {
-  const pet = PETS[i]
+    const pet = PETS[i]
 
-  const petButtonElement = document.createElement('button')
-  petButtonElement.classList.add('pet')
-  petButtonElement.id = pet.id
-  petButtonElement.textContent = pet.title
+    const petButtonElement = document.createElement('button')
+    petButtonElement.classList.add('pet')
+    petButtonElement.id = pet.id
+    petButtonElement.textContent = pet.title
 
-  petShop.append(petButtonElement)
+    petShop.append(petButtonElement)
 }
 
 // Обновляем отображение корзины
 function updateCartDisplay() {
-  cartList.innerHTML = ''
+    cartList.innerHTML = ''
 
-  for (let i = 0; i < cart.length; i++) {
-    const petId = cart[i]
-    const pet = PETS.find((item) => item.id === petId)
-    const petSpanElement = document.createElement('li')
-    petSpanElement.classList.add('pet')
-    petSpanElement.textContent = pet.title
-    cartList.append(petSpanElement)
-  }
+    for (let i = 0; i < cart.length; i++) {
+        const petId = cart[i]
+        const pet = PETS.find((item) => item.id === petId)
+        const petSpanElement = document.createElement('li')
+        petSpanElement.classList.add('pet')
+        petSpanElement.textContent = pet.title
+        cartList.append(petSpanElement)
+    }
 }
 
 clearCartButton.addEventListener('click', function () {
-  cart.length = 0
-  updateCartDisplay()
+    cart.length = 0
+    updateCartDisplay()
 })
 
 // Твой код:
+// Обработчик кликов на контейнере pet-shop
+petShop.addEventListener('click', function (event) {
+    // Проверяем, что клик был именно по кнопке с питомцем
+    if(event.target.classList.contains('pet') && event.target !== clearCartButton){
+        const petId = event.target.id;
+        // Проверяем, не превышен ли лимит корзины
+        if(cart.length >= 3){
+            messageBox.textContent = 'Вы не можете добавить более 3 питомцев'
+            return;// Прерываем выполнение функции
+        }
+        // Проверяем, нет ли уже этого питомца в корзине
+        if(!cart.includes(petId)){
+            cart.push(petId);// Добавляем ID питомца в корзину
+            updateCartDisplay()// Обновляем отображение корзины путём вызова функции
+        }
+        // Очищаем сообщение об ошибке, если оно было
+        if(messageBox.textContent){
+            messageBox.textContent = ''
+        }
+    }
+})
+// Объяснение решения:
+//  Делегирование событий: Мы добавляем один обработчик на весь контейнер .pet-shop, а не на каждую кнопку отдельно
+//
+// Проверка целевого элемента: if (event.target.classList.contains('pet') && event.target !== clearCartButton) - проверяем, что кликнули именно по кнопке питомца и не по кнопке очистки корзины
+//
+// Получение ID питомца: const petId = event.target.id - получаем ID питомца из атрибута id кнопки
+//
+// Проверка лимита: if (cart.length >= 3) - проверяем, что в корзине еще есть место (не больше 3 питомцев)
+//
+// Добавление в корзину: Если лимит не превышен, добавляем ID питомца в массив cart с помощью cart.push(petId)
+//
+// Обновление отображения: Вызываем updateCartDisplay() для перерисовки корзины
+//
+// Обработка ошибок: При превышении лимита показываем сообщение, при успешном добавлении - очищаем сообщение об ошибке
